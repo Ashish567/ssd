@@ -7,7 +7,73 @@
 	},
 	"item": [
 		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "New Request",
+					"id": "5d7dfbfc-efaf-45a7-a7c3-470e8d655ba0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"id": "2c9dac51-3bfd-40d7-b088-a1c9c588ce68"
+		},
+		{
 			"name": "Get Game Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e5b1c90-187e-4eaa-8957-142434129a74",
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the response schema for gameId, gameState, and lastUpdated\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.gameId).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(responseData.gameState).to.exist.and.to.be.a('string');\r",
+							"    pm.expect(responseData.lastUpdated).to.exist.and.to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"GameId is a non-empty string in a valid format\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.gameId).to.be.a('string').and.to.have.lengthOf.at.least(1, \"GameId should not be empty\");\r",
+							"  pm.expect(responseData.gameId).to.match(/^[0-9a-fA-F-]{36}$/); // Validate format using regex\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Game state is one of the expected values\", function () {\r",
+							"    const validGameStates = [\"in_progress\", \"completed\", \"paused\"];\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData.gameState).to.be.oneOf(validGameStates);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"id": "e671d802-38c7-49ac-b16f-71cf9e4b39b2",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
