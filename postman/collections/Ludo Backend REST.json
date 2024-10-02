@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "90949704-b69e-4d94-bcab-6fdd4557daf7",
+		"name": "Ludo Backend REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "29542537-90949704-b69e-4d94-bcab-6fdd4557daf7"
+	},
+	"item": [
+		{
+			"name": "Get Game Status",
+			"id": "e671d802-38c7-49ac-b16f-71cf9e4b39b2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/games/game-state?gameId=538cb851-049c-44f6-a318-4e4272e1eb5e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"games",
+						"game-state"
+					],
+					"query": [
+						{
+							"key": "gameId",
+							"value": "538cb851-049c-44f6-a318-4e4272e1eb5e"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Game",
+			"id": "1fc6bf78-a4f5-4dfd-a022-62530f16d880",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"players\": [\r\n        {\r\n            \"name\": \"Player1\",\r\n            \"type\": \"HUMAN\",\r\n            \"pieceBoards\": [\r\n                {\r\n                    \"color\": \"BLUE\",\r\n                    \"pieces\": [\r\n                        {\r\n                            \"color\": \"BLUE\",\r\n                            \"number\": 1\r\n                        },\r\n                        {\r\n                            \"color\": \"BLUE\",\r\n                            \"number\": 2\r\n                        },\r\n                        {\r\n                            \"color\": \"BLUE\",\r\n                            \"number\": 3\r\n                        },\r\n                        {\r\n                            \"color\": \"BLUE\",\r\n                            \"number\": 4\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"Player2\",\r\n            \"type\": \"HUMAN\",\r\n            \"pieceBoards\": [\r\n                {\r\n                    \"color\": \"RED\",\r\n                    \"pieces\": [\r\n                        {\r\n                            \"color\": \"RED\",\r\n                            \"number\": 1\r\n                        },\r\n                        {\r\n                            \"color\": \"RED\",\r\n                            \"number\": 2\r\n                        },\r\n                        {\r\n                            \"color\": \"RED\",\r\n                            \"number\": 3\r\n                        },\r\n                        {\r\n                            \"color\": \"RED\",\r\n                            \"number\": 4\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"gameName\": \"Ludo\",\r\n    \"createdBy\":\"7678789\",\r\n    \"noOfPlayers\":\"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/games/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"games",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Game",
+			"id": "51e11935-d762-40dc-a280-f0735100e0af",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/games/join?gameId=123&playerName=JohnDoe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"games",
+						"join"
+					],
+					"query": [
+						{
+							"key": "gameId",
+							"value": "123"
+						},
+						{
+							"key": "playerName",
+							"value": "JohnDoe"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
